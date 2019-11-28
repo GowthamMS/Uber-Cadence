@@ -11,6 +11,7 @@ func init() {
 }
 
 func main() {
+  flag.Parse()
   if workerMode {
     WorkerFunction()
   } else {
