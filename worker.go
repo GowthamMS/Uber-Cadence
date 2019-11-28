@@ -1,4 +1,4 @@
-package main
+package cadence
 
 import (
 	"github.com/uber-go/tally"
@@ -18,10 +18,10 @@ var CadenceService = "cadence-frontend"
 
 
 func main() {
-	startWorker(buildLogger(), buildCadenceClient())
+	startWorker(BuildLogger(), BuildServiceClient())
 }
 
-func buildLogger() *zap.Logger {
+func BuildLogger() *zap.Logger {
 	config := zap.NewDevelopmentConfig()
 	config.Level.SetLevel(zapcore.InfoLevel)
 
@@ -34,7 +34,7 @@ func buildLogger() *zap.Logger {
 	return logger
 }
 
-func buildCadenceClient() workflowserviceclient.Interface {
+func BuildServiceClient() workflowserviceclient.Interface {
 	ch, err := tchannel.NewChannelTransport(tchannel.ServiceName(ClientName))
 	if err != nil {
 		panic("Failed to setup tchannel")
