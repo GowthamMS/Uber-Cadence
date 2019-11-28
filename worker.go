@@ -44,5 +44,6 @@ func startWorker(logger *zap.Logger, service workflowserviceclient.Interface) {
     panic("Failed to start worker")
   }
   logger.Info("Started Worker.", zap.String("worker", TaskListName))
-  //select {}
+  // For the worker to wait for ever for the workflow to be assigned
+  select {}
 }
